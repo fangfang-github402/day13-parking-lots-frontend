@@ -1,10 +1,16 @@
-import {parkingLots, parkingStrategies} from '../mock';
 import ParkingLot from './ParkingLot';
 import {useState} from "react";
 import '../css/ParkingApp.css';
 
 const ParkingApp = () => {
     const [plateNumber, setPlateNumber] = useState('');
+
+    const parkingStrategies = [
+        { name: "Standard" },
+        { name: "Smart" },
+        { name: "Super Smart" }
+    ];
+
     const [selectedStrategy, setSelectedStrategy] = useState(parkingStrategies[0].name);
 
     const handlePark = () => {
