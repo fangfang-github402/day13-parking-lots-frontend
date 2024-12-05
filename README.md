@@ -121,3 +121,6 @@ stack
 :
 "AxiosError: Request failed with status code 400\n    at settle (http://localhost:3000/static/js/bundle.js:68213:12)\n    at XMLHttpRequest.onloadend (http://localhost:3000/static/js/bundle.js:66860:66)\n    at Axios.request (http://localhost:3000/static/js/bundle.js:67359:41)\n    at async parkCar (http://localhost:3000/main.6f420341d483df10b9f6.hot-update.js:26:20)"
 
+## License Plate Validation
+请帮我添加License Plate Validation：License plates must follow the format standard: two letters + four digits (e.g., “AB-1234”).
+

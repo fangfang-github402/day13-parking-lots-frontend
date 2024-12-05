@@ -14,7 +14,16 @@ const ParkingApp = () => {
 
     const [selectedStrategy, setSelectedStrategy] = useState(parkingStrategies[0].name);
 
+    const validatePlateNumber = (plateNumber) => {
+        const plateNumberPattern =  /^[A-Z]{2}-\d{4}$/;
+        return plateNumberPattern.test(plateNumber);
+    };
+
     const handlePark = () => {
+        if (!validatePlateNumber(plateNumber)) {
+            console.log("Invalid plate number");
+            return;
+        }
         parkCar(plateNumber, selectedStrategy)
             .then((response) => {
                 console.log(response);
@@ -25,6 +34,10 @@ const ParkingApp = () => {
     };
 
     const handleFetch = () => {
+        if (!validatePlateNumber(plateNumber)) {
+            console.log("Invalid plate number");
+            return;
+        }
         fetchCar(plateNumber)
             .then((response) => {
                 console.log(response);
