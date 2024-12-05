@@ -12,17 +12,18 @@ const ParkingLot = () => {
     }, []);
 
     return (
-        <div>
+        <div className={"parking-lots"}>
             <Row gutter={[16, 16]}>
                 {parkingLots.map((lot) => (
                     <Col span={8} key={lot.id}>
-                        <Card title={lot.name} bordered={false}>
+                        <Card bordered={true}>
+                            <span className={"parking-lot-title"}>{lot.name}</span>
                             <div className="parking-grid">
-                                {Array.from({length: lot.capacity}).map((_, index) => {
+                                {Array.from({ length: lot.capacity }).map((_, index) => {
                                     const ticket = lot.tickets.find(ticket => ticket.position === index + 1);
                                     return (
                                         <div key={index} className="parking-spot">
-                                            {ticket ? ticket.plateNumber : 'X'}
+                                            {ticket ? <div className="plate-number">{ticket.plateNumber}</div> :''}
                                         </div>
                                     );
                                 })}

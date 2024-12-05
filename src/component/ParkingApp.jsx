@@ -1,11 +1,11 @@
 import {parkingLots, parkingStrategies} from '../mock';
 import ParkingLot from './ParkingLot';
 import {useState} from "react";
+import '../css/ParkingApp.css';
 
 const ParkingApp = () => {
     const [plateNumber, setPlateNumber] = useState('');
     const [selectedStrategy, setSelectedStrategy] = useState(parkingStrategies[0].name);
-    const [lots, setLots] = useState(parkingLots);
 
     const handlePark = () => {
     };
@@ -15,7 +15,7 @@ const ParkingApp = () => {
 
     return (
         <div>
-            <div>
+            <div className={"control-bar"}>
                 <input
                     type="text"
                     value={plateNumber}

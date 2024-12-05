@@ -6,13 +6,35 @@
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    text-align: center;
+}
+
+.parking-lot-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .parking-spot {
-    border: 1px solid #d9d9d9;
-    padding: 10px;
-    text-align: center;
+    position: relative;
+    width: 100%;
+    padding-top: 50%; /* Aspect ratio 2:1 */
     background-color: #f0f0f0;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    text-align: center;
+}
+.plate-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d0e0d0; /* Blue background */
+    color: black; /* White text */
+    padding: 2px 8px;
+    border: 1px solid #282c34; /* White border */
+    border-radius: 2px;
+    font-size: 12px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    font-family: Arial, sans-serif; /* 调整字体 */
 }
