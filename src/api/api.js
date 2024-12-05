@@ -1,8 +1,5 @@
 import axios from 'axios';
-
-const instance = axios.create({
-    baseURL: "http://localhost:8080/parking",
-})
+import instance from "./interceptor";
 
 export const getParkingLots = async () => {
     const response = await instance.get("/lots");
