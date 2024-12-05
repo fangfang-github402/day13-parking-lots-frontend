@@ -77,3 +77,47 @@ return ResponseEntity.ok(car);
 我想要一个淡紫色和白色主题的页面，分成操作栏和停车场状况区，操作栏有一个输入框、一个下拉框和两个按钮，停车场状况区里每个停车场是一个卡片样式。字体需要清晰易读的无衬线字体，按钮可以使用与背景色形成对比的颜色，确保不同元素之间的字号和间距合理。标题可以使用较大的字号，而输入框和按钮的文字则适中。将每个停车场的布局设计成卡片形式，使其看起来更加整洁和现代。可以添加阴影效果来增加立体感。确保所有元素都对齐，并且元素之间有足够的间距，避免显得拥挤。当鼠标悬停在按钮或停车位上时，可以添加一些交互效果，如改变颜色或显示提示信息，提升用户体验。输入框可以添加圆角和阴影效果，使其看起来更加现代。按钮可以使用渐变颜色或悬浮效果，增加视觉吸引力。空闲停车位可以使用淡绿色背景，并且在鼠标悬停时显示 “Park” 提示。已占用停车位可以使用淡红色背景，并且在鼠标悬停时显示车牌号码。
 请你帮我写css
 
+## 调用后端接口解决bug
+前端接口：
+export const parkCar = async (plateNumber, strategy) => {
+const response = await instance.post("/park", null,{
+params: {
+plateNumber: plateNumber,
+strategy: strategy
+}
+});
+return response.data;
+}
+后端接口是
+@PostMapping("/park")
+public ResponseEntity<Ticket> parkCar(@RequestParam String plateNumber, @RequestParam String parkingBoyType) {
+Ticket ticket = parkingLotManagerService.parkCar(plateNumber, parkingBoyType);
+return ResponseEntity.ok(ticket);
+}
+出现了报错：
+AxiosError {message: 'Request failed with status code 400', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+code
+:
+"ERR_BAD_REQUEST"
+config
+:
+{transitional: {…}, adapter: Array(3), transformRequest: Array(1), transformResponse: Array(1), timeout: 0, …}
+message
+:
+"Request failed with status code 400"
+name
+:
+"AxiosError"
+request
+:
+XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}
+response
+:
+{data: {…}, status: 400, statusText: '', headers: AxiosHeaders, config: {…}, …}
+status
+:
+400
+stack
+:
+"AxiosError: Request failed with status code 400\n    at settle (http://localhost:3000/static/js/bundle.js:68213:12)\n    at XMLHttpRequest.onloadend (http://localhost:3000/static/js/bundle.js:66860:66)\n    at Axios.request (http://localhost:3000/static/js/bundle.js:67359:41)\n    at async parkCar (http://localhost:3000/main.6f420341d483df10b9f6.hot-update.js:26:20)"
+

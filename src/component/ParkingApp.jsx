@@ -1,6 +1,7 @@
 import ParkingLot from './ParkingLot';
 import {useState} from "react";
 import '../css/ParkingApp.css';
+import {fetchCar, parkCar} from "../api/api";
 
 const ParkingApp = () => {
     const [plateNumber, setPlateNumber] = useState('');
@@ -14,9 +15,23 @@ const ParkingApp = () => {
     const [selectedStrategy, setSelectedStrategy] = useState(parkingStrategies[0].name);
 
     const handlePark = () => {
+        parkCar(plateNumber, selectedStrategy)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     const handleFetch = () => {
+        fetchCar(plateNumber)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (
