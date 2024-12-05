@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Card } from 'antd';
+import { getParkingLots } from '../api/api';
+import '../css/ParkingLot.css';
 
-const ParkingLot = ({name, capacity, spots}) => {
+const ParkingLot = () => {
+    const [parkingLots, setParkingLots] = useState([]);
+    useEffect(() => {
+        getParkingLots().then((data) => {
+            setParkingLots(data);
+        });
+    }, []);
+
     return (
         <div>
-            <h3>{name} (Capacity: {capacity})</h3>
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${Math.ceil(Math.sqrt(capacity))}, 1fr)`,
-                gap: '10px'
-            }}>
-                {Array.from({length: capacity}).map((_, index) => (
-                    <div key={index} style={{border: '1px solid black', padding: '10px', textAlign: 'center'}}>
-                        {spots[index] ? spots[index].plateNumber : 'X'}
-                    </div>
+            <Row gutter={[16, 16]}>
+                {parkingLots.map((lot) => (
+                    <Col span={8} key={lot.id}>
+                        <Card title={lot.name} bordered={false}>
+                            <div className="parking-grid">
+                                {Array.from({length: lot.capacity}).map((_, index) => {
+                                    const ticket = lot.tickets.find(ticket => ticket.position === index + 1);
+                                    return (
+                                        <div key={index} className="parking-spot">
+                                            {ticket ? ticket.plateNumber : 'X'}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </Card>
+                    </Col>
                 ))}
-            </div>
+            </Row>
         </div>
     );
 };

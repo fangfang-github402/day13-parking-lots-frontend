@@ -35,11 +35,7 @@ const ParkingApp = () => {
                 <button onClick={handlePark}>Park</button>
                 <button onClick={handleFetch}>Fetch</button>
             </div>
-            <div>
-                {lots.map((lot) => (
-                    <ParkingLot key={lot.name} {...lot} />
-                ))}
-            </div>
+            <ParkingLot/>
         </div>
     );
 };
