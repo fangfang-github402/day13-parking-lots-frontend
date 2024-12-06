@@ -124,3 +124,7 @@ stack
 ## License Plate Validation
 请帮我添加License Plate Validation：License plates must follow the format standard: two letters + four digits (e.g., “AB-1234”).
 
+## 在前端维护停车场数据
+lots里面是[ { "id": 1, "name": "Plaza Park", "tickets": [ { "plateNumber": "AB-5566", "position": 1, "parkingLot": 1 }, { "plateNumber": "QQ-1234", "position": 3, "parkingLot": 1 }, { "plateNumber": "AB-3422", "position": 2, "parkingLot": 1 } ], "capacity": 9, "full": false, "availablePositionRate": 0.6666666666666666, "availableCapacity": 6 }, { "id": 2, "name": "City Mall Garage", "tickets": [ { "plateNumber": "HL-1199", "position": 2, "parkingLot": 2 } ], "capacity": 12, "full": false, "availablePositionRate": 0.9166666666666666, "availableCapacity": 11 }, { "id": 3, "name": "Office Tower Parking", "tickets": [ { "plateNumber": "JJ-2334", "position": 1, "parkingLot": 3 } ], "capacity": 9, "full": false, "availablePositionRate": 0.8888888888888888, "availableCapacity": 8 } ]这样的数据结构。 每次通过调用api response的{ "plateNumber": "AB-5566", "position": 1, "parkingLot": 1 }json对象去update lots，如果是park就根据parkingLot的编号新增在对应parking lot的ticket里，如果是fetch就找到对应parking lot，根据plateNumber delete 对应ticket  
+
+

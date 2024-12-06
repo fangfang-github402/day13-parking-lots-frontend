@@ -1,31 +1,35 @@
 import ParkingLot from './ParkingLot';
-import {useState} from "react";
+import {useReducer, useState} from "react";
 import '../css/ParkingApp.css';
 import {fetchCar, parkCar} from "../api/api";
+import {lotsReducer} from "../context/lotsReducer";
 
 const ParkingApp = () => {
     const [plateNumber, setPlateNumber] = useState('');
+    const [state, dispatch] = useReducer(lotsReducer, []);
+
 
     const parkingStrategies = [
-        { name: "Standard" },
-        { name: "Smart" },
-        { name: "Super Smart" }
+        {name: "Standard"},
+        {name: "Smart"},
+        {name: "Super Smart"}
     ];
 
     const [selectedStrategy, setSelectedStrategy] = useState(parkingStrategies[0].name);
 
+
     const validatePlateNumber = (plateNumber) => {
-        const plateNumberPattern =  /^[A-Z]{2}-\d{4}$/;
+        const plateNumberPattern = /^[A-Z]{2}-\d{4}$/;
         return plateNumberPattern.test(plateNumber);
     };
 
     const handlePark = () => {
         if (!validatePlateNumber(plateNumber)) {
-            console.log("Invalid plate number");
             return;
         }
         parkCar(plateNumber, selectedStrategy)
             .then((response) => {
+                dispatch({type: 'PARK_CAR', payload: response});
                 console.log(response);
             })
             .catch((error) => {
@@ -35,11 +39,11 @@ const ParkingApp = () => {
 
     const handleFetch = () => {
         if (!validatePlateNumber(plateNumber)) {
-            console.log("Invalid plate number");
             return;
         }
         fetchCar(plateNumber)
             .then((response) => {
+                dispatch({type: 'FETCH_CAR', payload: response});
                 console.log(response);
             })
             .catch((error) => {
