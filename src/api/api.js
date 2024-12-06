@@ -6,12 +6,11 @@ export const getParkingLots = async () => {
 }
 
 export const parkCar = async (plateNumber, strategy) => {
-    const response = await instance.post("/park", null,{
-        params: {
+    const response = await instance.post("/park", {
             plateNumber: plateNumber,
             parkingBoyType: strategy
         }
-    });
+    );
     return response.data;
 }
 
