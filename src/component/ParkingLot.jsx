@@ -6,14 +6,13 @@ import {getParkingLots} from "../api/api";
 import PlateNumber from "./PlateNumber";
 
 const ParkingLot = () => {
-    const {state} = useContext(LotsContext);
-    const {dispatch} = useContext(LotsContext);
+    const {state, dispatch} = useContext(LotsContext);
 
     useEffect(() => {
         getParkingLots().then((data) => {
             dispatch({type: 'SET_LOTS', payload: data});
         });
-    }, [state]);
+    }, );
 
     return (
         <div className={"parking-lots"}>

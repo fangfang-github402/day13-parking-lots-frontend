@@ -3,7 +3,6 @@ import ParkingLot from './ParkingLot';
 import OperatePanel from './OperatePanel';
 
 const ParkingApp = () => {
-
     return (
         <div>
             <OperatePanel/>
