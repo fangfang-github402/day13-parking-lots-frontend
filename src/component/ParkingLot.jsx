@@ -3,6 +3,7 @@ import {Card, Col, Row} from 'antd';
 import '../css/ParkingLot.css';
 import {LotsContext} from "../App";
 import {getParkingLots} from "../api/api";
+import PlateNumber from "./PlateNumber";
 
 const ParkingLot = () => {
     const {state} = useContext(LotsContext);
@@ -26,7 +27,7 @@ const ParkingLot = () => {
                                     const ticket = lot.tickets.find(ticket => ticket.position === index + 1);
                                     return (
                                         <div key={index} className="parking-spot">
-                                            {ticket ? <div className="plate-number">{ticket.plateNumber}</div> : ''}
+                                           {ticket ? <PlateNumber plateNumber={ticket.plateNumber} /> : ''}
                                         </div>
                                     );
                                 })}
