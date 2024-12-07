@@ -130,4 +130,6 @@ lots里面是[ { "id": 1, "name": "Plaza Park", "tickets": [ { "plateNumber": "A
 ## 改成用component
 {ticket ?  <div>{ticket.plateNumber}</div> : ''} 我想要把这里改成用一个component
 
+## operate panel
+我想要把parkingapp里面的control-bar转到operatepanel
 
